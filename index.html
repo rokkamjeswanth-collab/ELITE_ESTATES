@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ELITE ESTATES | Premium Lands</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="navbar" id="navbar">
+        <div class="logo">ELITE ESTATES</div>
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#listings">Buy Land</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#" onclick="toggleSell(); return false;">Sell Land</a></li>
+            <li><button class="login-btn" onclick="toggleLogin()">Login</button></li>
+        </ul>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <h1 class="animate-up gradient-text">Secure Your Legacy.</h1>
+            <p class="animate-up delay-1">Discover premium plots, exclusive acres, and highly profitable lands ready for your investment.</p>
+            <div class="hero-buttons animate-up delay-2">
+                <a href="#listings" class="cta-btn shiny-btn">Buy Property</a>
+                <button onclick="toggleSell()" class="cta-btn outline shiny-btn" style="border-radius: 40px; font-family: 'Poppins', sans-serif;">Sell Property</button>
+            </div>
+        </div>
+    </header>
+
+    <section class="listings" id="listings">
+        <h2 class="section-title reveal gradient-text">Exclusive Listings</h2>
+        <p class="section-subtitle reveal">Explore our handpicked premium properties available for immediate acquisition.</p>
+        
+        <div class="cards-container" id="landContainer">
+            <div class="card reveal">
+                <div class="image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=500&auto=format&fit=crop" alt="Land Preview">
+                    <div class="price-tag">₹50,00,000</div>
+                </div>
+                <div class="card-content">
+                    <h3>Green Valley Plot</h3>
+                    <div class="card-details">
+                        <p>📍 <strong>Visakhapatnam</strong></p>
+                        <p>📐 <strong>5 Acres</strong></p>
+                    </div>
+                    <p class="desc-text">A magnificent green plot perfectly suited for high-yield farming or building a luxury eco-resort.</p>
+                    <hr class="card-divider">
+                    <p class="owner-text">👤 Listed by: Elite Admin</p>
+                    <button class="shiny-btn" onclick="toggleContact()">View Details & Contact</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="about-content reveal">
+            <h2 class="gradient-text">Why Elite Estates?</h2>
+            <p>We redefine real estate trading. Whether you are expanding your investment portfolio or selling a cherished family property, we guarantee the highest market value and absolute legal transparency.</p>
+            <ul class="features-list">
+                <li><span class="icon-glow">✔️</span> 100% Clear Titles & Legal Verification</li>
+                <li><span class="icon-glow">✔️</span> Exclusive Network of High-Net-Worth Buyers</li>
+                <li><span class="icon-glow">✔️</span> Prime Locations with Maximum ROI Potential</li>
+            </ul>
+        </div>
+        <div class="about-image reveal">
+            <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=800&auto=format&fit=crop" alt="Premium Property">
+        </div>
+    </section>
+
+    <footer class="footer reveal">
+        <div class="footer-content">
+            <h3 class="gradient-text">ELITE ESTATES</h3>
+            <p>Your Trusted Partner in Land Investment</p>
+            <div class="footer-contact">
+                <p>📞 +91 8074828982</p>
+                <p>✉️ info@eliteestates.com</p>
+            </div>
+            <p class="copyright">&copy; 2026 ELITE ESTATES. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div class="modal-overlay" id="sellModal">
+        <div class="modal-box wide-box">
+            <button class="close-btn" onclick="toggleSell()">&times;</button>
+            <div id="sellStep1">
+                <h2 class="gradient-text" style="margin-bottom: 5px;">List Your Property</h2>
+                <p class="modal-sub">Submit your land details directly to our buyer network.</p>
+                <form id="sellForm" class="grid-form">
+                    <input type="text" id="ownerName" placeholder="Owner's Full Name" required>
+                    <input type="text" id="landLoc" placeholder="Exact Location (e.g., Vizag)" required>
+                    <input type="text" id="landSize" placeholder="Property Size (e.g., 2 Acres)" required>
+                    <input type="text" id="landPrice" placeholder="Expected Price (e.g., ₹30,00,000)" required>
+                    <textarea id="landDesc" class="full-width" placeholder="Highlight the best features of your land..." rows="2" required></textarea>
+                    <div class="full-width" style="margin-top: -5px;">
+                        <label class="file-label">Upload High-Quality Photo:</label>
+                        <input type="file" id="landPhoto" accept="image/*" required style="width: 100%;">
+                    </div>
+                    <button type="submit" class="submit-btn shiny-btn full-width" style="margin-top: 5px;">Confirm Details</button>
+                </form>
+            </div>
+            <div id="sellStep2" style="display: none; text-align: center; padding: 20px 0;">
+                <div class="check-circle"><span class="check-mark">✓</span></div>
+                <h2 class="gradient-text">Successfully Listed!</h2>
+                <p class="modal-sub">Your property is now live and visible to buyers.</p>
+                <button type="button" class="submit-btn shiny-btn" onclick="confirmAndClose()" style="width: 100%; margin-top: 15px;">Confirm & View Listing</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="contactModal">
+        <div class="modal-box text-center">
+            <button class="close-btn" onclick="toggleContact()">&times;</button>
+            <h2 class="gradient-text">Direct Inquiry</h2>
+            <p class="modal-sub">Connect with our elite agents immediately regarding this property.</p>
+            <div class="contact-card">
+                <h3>📞 +91 8074828982</h3>
+            </div>
+            <a href="https://wa.me/918074828982" target="_blank" class="whatsapp-btn shiny-btn">💬 Connect via WhatsApp</a>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="loginModal">
+        <div class="modal-box">
+            <button class="close-btn" onclick="toggleLogin()">&times;</button>
+            
+            <div id="loginStep1">
+                <h2 class="gradient-text">Account Login</h2>
+                <form id="loginForm" class="form-layout">
+                    <input type="email" id="loginEmail" placeholder="Email Address" required>
+                    <input type="password" id="loginPass" placeholder="Password" required>
+                    <button type="submit" class="submit-btn shiny-btn">Secure Login</button>
+                </form>
+                <p class="modal-sub" style="text-align: center; margin-top: 15px;">
+                    Don't have an account? <a href="#" onclick="switchModal('loginModal', 'registerModal')" style="color: var(--gold); font-weight: 600;">Register Here</a>
+                </p>
+            </div>
+
+            <div id="loginStep2" style="display: none; text-align: center; padding: 10px 0;">
+                <div class="check-circle"><span class="check-mark">✓</span></div>
+                <h2 class="gradient-text">Welcome Back!</h2>
+                <p class="modal-sub" id="loginWelcomeMsg">Authentication successful.</p>
+                <button type="button" class="submit-btn shiny-btn" onclick="toggleLogin()" style="width: 100%; margin-top: 10px;">Enter Dashboard</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="registerModal">
+        <div class="modal-box">
+            <button class="close-btn" onclick="toggleRegister()">&times;</button>
+            
+            <div id="registerStep1">
+                <h2 class="gradient-text">Create Account</h2>
+                <p class="modal-sub">Join Elite Estates to save and manage properties.</p>
+                <form id="registerForm" class="form-layout">
+                    <input type="text" id="regName" placeholder="Full Name" required>
+                    <input type="email" id="regEmail" placeholder="Email Address" required>
+                    <input type="password" id="regPass" placeholder="Create Password" required>
+                    <button type="submit" class="submit-btn shiny-btn">Register Now</button>
+                </form>
+                <p class="modal-sub" style="text-align: center; margin-top: 15px;">
+                    Already have an account? <a href="#" onclick="switchModal('registerModal', 'loginModal')" style="color: var(--gold); font-weight: 600;">Login Here</a>
+                </p>
+            </div>
+
+            <div id="registerStep2" style="display: none; text-align: center; padding: 10px 0;">
+                <div class="check-circle"><span class="check-mark">✓</span></div>
+                <h2 class="gradient-text">Account Created!</h2>
+                <p class="modal-sub">Your elite profile has been successfully registered.</p>
+                <button type="button" class="submit-btn shiny-btn" onclick="finishRegister()" style="width: 100%; margin-top: 10px;">Proceed to Login</button>
+            </div>
+        </div>
+    </div>
+
+    <a href="https://wa.me/918074828982" class="floating-whatsapp" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    </a>
+
+    <script>
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) navbar.classList.add('scrolled');
+            else navbar.classList.remove('scrolled');
+        });
+
+        // Toggle Modals with Auto-Reset Magic
+        function toggleContact() { document.getElementById('contactModal').classList.toggle('active'); }
+        
+        function toggleLogin() { 
+            const modal = document.getElementById('loginModal');
+            modal.classList.toggle('active'); 
+            if (!modal.classList.contains('active')) {
+                setTimeout(() => {
+                    document.getElementById('loginStep1').style.display = 'block';
+                    document.getElementById('loginStep2').style.display = 'none';
+                    document.getElementById('loginForm').reset();
+                }, 400);
+            }
+        }
+
+        function toggleRegister() { 
+            const modal = document.getElementById('registerModal');
+            modal.classList.toggle('active'); 
+            if (!modal.classList.contains('active')) {
+                setTimeout(() => {
+                    document.getElementById('registerStep1').style.display = 'block';
+                    document.getElementById('registerStep2').style.display = 'none';
+                    document.getElementById('registerForm').reset();
+                }, 400);
+            }
+        }
+        
+        function toggleSell() { 
+            const modal = document.getElementById('sellModal');
+            modal.classList.toggle('active'); 
+            if (!modal.classList.contains('active')) {
+                setTimeout(() => {
+                    document.getElementById('sellStep1').style.display = 'block';
+                    document.getElementById('sellStep2').style.display = 'none';
+                    document.getElementById('sellForm').reset();
+                }, 400);
+            }
+        }
+
+        function switchModal(closeId, openId) {
+            document.getElementById(closeId).classList.remove('active');
+            document.getElementById(openId).classList.add('active');
+            
+            // Auto reset the closed modal after it fades out
+            setTimeout(() => {
+                if(closeId === 'registerModal') {
+                    document.getElementById('registerStep1').style.display = 'block';
+                    document.getElementById('registerStep2').style.display = 'none';
+                    document.getElementById('registerForm').reset();
+                }
+                if(closeId === 'loginModal') {
+                    document.getElementById('loginStep1').style.display = 'block';
+                    document.getElementById('loginStep2').style.display = 'none';
+                    document.getElementById('loginForm').reset();
+                }
+            }, 400);
+        }
+
+        window.onclick = function(event) {
+            const modals = ['loginModal', 'sellModal', 'contactModal', 'registerModal'];
+            modals.forEach(id => {
+                const modal = document.getElementById(id);
+                if (event.target === modal) {
+                    if (id === 'sellModal') toggleSell();
+                    else if (id === 'loginModal') toggleLogin();
+                    else if (id === 'registerModal') toggleRegister();
+                    else modal.classList.remove('active');
+                }
+            });
+        }
+
+        function reveal() {
+            var reveals = document.querySelectorAll('.reveal');
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                if (reveals[i].getBoundingClientRect().top < windowHeight - 100) {
+                    reveals[i].classList.add('active');
+                }
+            }
+        }
+        window.addEventListener('scroll', reveal);
+        reveal();
+
+        // 1. REGISTRATION LOGIC WITH ANIMATION
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault(); 
+            const name = document.getElementById('regName').value;
+            const email = document.getElementById('regEmail').value;
+            const pass = document.getElementById('regPass').value;
+
+            localStorage.setItem('eliteUserEmail', email);
+            localStorage.setItem('eliteUserPass', pass);
+            localStorage.setItem('eliteUserName', name);
+
+            // Hide Form, Show Success Checkmark
+            document.getElementById('registerStep1').style.display = 'none';
+            document.getElementById('registerStep2').style.display = 'block';
+        });
+
+        // Button click after registration success
+        function finishRegister() {
+            switchModal('registerModal', 'loginModal');
+        }
+
+        // 2. LOGIN LOGIC WITH ANIMATION
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault(); 
+            const email = document.getElementById('loginEmail').value;
+            const pass = document.getElementById('loginPass').value;
+
+            const secretEmail = "admin@elite.com";
+            const secretPass = "12345";
+
+            const savedEmail = localStorage.getItem('eliteUserEmail');
+            const savedPass = localStorage.getItem('eliteUserPass');
+            const savedName = localStorage.getItem('eliteUserName');
+
+            if (email === secretEmail && pass === secretPass) {
+                loginSuccess("Admin");
+            } else if (savedEmail && email === savedEmail && pass === savedPass) {
+                loginSuccess(savedName);
+            } else {
+                // We keep standard alert for errors, since shaking/error animations can be complex
+                alert("Access Denied: Invalid Email or Password. Please check your credentials or register.");
+            }
+        });
+
+        function loginSuccess(userName) {
+            // Change Navbar Button
+            const loginBtn = document.querySelector('.login-btn');
+            loginBtn.innerText = "Welcome, " + userName;
+            loginBtn.style.background = "var(--gold)";
+            loginBtn.style.color = "var(--primary-dark)";
+            
+            // Update Welcome text with User's Name
+            document.getElementById('loginWelcomeMsg').innerHTML = "Welcome back, <strong>" + userName + "</strong>!";
+            
+            // Hide Form, Show Success Checkmark
+            document.getElementById('loginStep1').style.display = 'none';
+            document.getElementById('loginStep2').style.display = 'block';
+        }
+
+        // 3. SELL PROPERTY LOGIC
+        document.getElementById('sellForm').addEventListener('submit', function(e) {
+            e.preventDefault(); 
+            const name = document.getElementById('ownerName').value;
+            const loc = document.getElementById('landLoc').value;
+            const size = document.getElementById('landSize').value;
+            const price = document.getElementById('landPrice').value;
+            const desc = document.getElementById('landDesc').value;
+            const photoInput = document.getElementById('landPhoto');
+
+            let photoUrl = "";
+            if(photoInput.files && photoInput.files[0]) {
+                photoUrl = URL.createObjectURL(photoInput.files[0]);
+            }
+
+            const newCard = document.createElement('div');
+            newCard.className = 'card reveal active'; 
+            newCard.innerHTML = `
+                <div class="image-wrapper">
+                    <img src="${photoUrl}" alt="New Land">
+                    <div class="price-tag">${price}</div>
+                </div>
+                <div class="card-content">
+                    <h3>${loc} Plot</h3>
+                    <div class="card-details">
+                        <p>📍 <strong>${loc}</strong></p>
+                        <p>📐 <strong>${size}</strong></p>
+                    </div>
+                    <p class="desc-text">${desc}</p>
+                    <hr class="card-divider">
+                    <p class="owner-text">👤 Listed by: ${name}</p>
+                    <button class="shiny-btn" onclick="toggleContact()">View Details & Contact</button>
+                </div>
+            `;
+
+            document.getElementById('landContainer').appendChild(newCard);
+            document.getElementById('sellStep1').style.display = 'none';
+            document.getElementById('sellStep2').style.display = 'block';
+        });
+
+        function confirmAndClose() {
+            toggleSell(); 
+            setTimeout(() => {
+                document.getElementById('listings').scrollIntoView({ behavior: "smooth" });
+            }, 300);
+        }
+    </script>
+</body>
+</html>
